@@ -1,26 +1,27 @@
-import { RECEIVE_DECKS, ADD_DECK, ADD_CARD } from '../actions'
+import { RECEIVE_DECKS, ADD_DECK, ADD_CARD } from "../actions";
 
-function decks (state = {}, action) {
+function decks(state = {}, action) {
   switch (action.type) {
-    case RECEIVE_DECKS :
+    case RECEIVE_DECKS:
       return {
         ...state,
-        ...action.decks,
+        ...action.decks
       };
-    case ADD_DECK :
+    case ADD_DECK:
       return {
         ...state,
-        [action.deck.title]:[action.deck],
+        [action.deck.title]: [action.deck]
       };
-    case ADD_CARD :
+    case ADD_CARD:
       return {
         ...state,
-        [action.deckKey] :{
+        [action.deckKey]: {
           ...state[action.deckKey],
-          questions:[...action.questions] }
+          questions: [...action.questions]
+        }
       };
-    default :
-      return state
+    default:
+      return state;
   }
 }
 

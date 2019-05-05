@@ -1,71 +1,75 @@
-import React from 'react'
-import { Text, View, StyleSheet,TextInput } from 'react-native';
-import TextButton from './TextButton';
-import { connect } from 'react-redux';
-import {addDeckToDB} from "../Utils/api";
-import {addDeck } from '../actions';
-import {white,purple} from '../Utils/colors';
+import React from "react";
+import { Text, View, StyleSheet, TextInput } from "react-native";
+import TextButton from "./TextButton";
+import { connect } from "react-redux";
+import { addDeckToDB } from "../Utils/api";
+import { addDeck } from "../actions";
+import { white, purple } from "../Utils/colors";
 
-class AddDeck extends React.Component{
-  state ={
-    deckTitle :""
-  }
+class AddDeck extends React.Component {
+  state = {
+    deckTitle: ""
+  };
 
-  handleAddDeck = () =>{
+  handleAddDeck = () => {
     const title = this.state.deckTitle;
-    let deck = {title:title};
+    let deck = { title: title };
     const { dispatch } = this.props;
-    addDeckToDB(deck).then(()=>{
-     dispatch(addDeck(deck))
-  }).then(()=> {
-      this.props.navigation.navigate('Home');
+    addDeckToDB(deck)
+      .then(() => {
+        dispatch(addDeck(deck));
+      })
+      .then(() => {
+        this.props.navigation.navigate("Home");
       });
-  }
+  };
 
-  onChangeText = (deckTitle) => {
-    this.setState({deckTitle})
-  }
-  render(){
+  onChangeText = deckTitle => {
+    this.setState({ deckTitle });
+  };
+  render() {
     return (
       <View style={styles.mainEle}>
-        <Text style={[styles.paragraph,{fontWeight:"bold"}]}>
+        <Text style={[styles.paragraph, { fontWeight: "bold" }]}>
           What is the title of your new deck
         </Text>
         <TextInput
-        maxLength = {40}
-    mode='flat'
-    style={styles.textInputField}
-    onChangeText={(deckTitle) => this.onChangeText(deckTitle)}
-    value={this.state.deckTitle}
-    placeholder='Deck Title'
-    />
-        <TextButton style={styles.buttonEle} onPress={this.handleAddDeck}>
-        <Text style={styles.submitBtnText}>
-            Submit
-            </Text>
+          maxLength={40}
+          mode="flat"
+          style={styles.textInputField}
+          onChangeText={deckTitle => this.onChangeText(deckTitle)}
+          value={this.state.deckTitle}
+          placeholder="Deck Title"
+        />
+        <TextButton
+          style={styles.buttonEle}
+          onPress={this.handleAddDeck}
+          disabled={this.state.deckTitle === ""}
+        >
+          <Text style={styles.submitBtnText}>Submit</Text>
         </TextButton>
       </View>
-    )
+    );
   }
 }
 
 const styles = StyleSheet.create({
   mainEle: {
-    flex:1,
-    fontFamily: 'Cochin',
+    flex: 1,
+    fontFamily: "Cochin",
     fontSize: 20,
-    backgroundColor:white,
-    borderRadius :10,
-    alignContent: 'center',
-  justifyContent: 'flex-start',
-    padding:20,
+    backgroundColor: white,
+    borderRadius: 10,
+    alignContent: "center",
+    justifyContent: "flex-start",
+    padding: 20,
     marginLeft: 10,
     marginRight: 10,
     marginTop: 10,
-    marginBottom: 10, 
+    marginBottom: 10,
     shadowRadius: 3,
     shadowOpacity: 0.8,
-    shadowColor: 'rgba(0, 0, 0, 0.24)',
+    shadowColor: "rgba(0, 0, 0, 0.24)",
     shadowOffset: {
       width: 0,
       height: 3
@@ -73,33 +77,31 @@ const styles = StyleSheet.create({
   },
   paragraph: {
     fontSize: 20,
-    textAlign: 'center',
-
+    textAlign: "center"
   },
   textInputField: {
     borderRadius: 3,
-    borderStyle: 'solid',
+    borderStyle: "solid",
     borderWidth: 1,
     fontSize: 20,
-    padding:10,
+    padding: 10,
     marginLeft: 5,
     marginRight: 5,
-    marginTop: 20, 
-    
+    marginTop: 20
   },
-  buttonEle : {
+  buttonEle: {
     backgroundColor: purple,
     padding: 10,
     height: 45,
     marginLeft: 40,
     marginRight: 40,
-    marginTop:20,
+    marginTop: 20
   },
   submitBtnText: {
     color: white,
     fontSize: 22,
-    textAlign: 'center',
-  },
-  });
-  
+    textAlign: "center"
+  }
+});
+
 export default connect()(AddDeck);
