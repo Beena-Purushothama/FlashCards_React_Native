@@ -7,7 +7,8 @@ This is a mobile application (Android and iOS) that allows users to study collec
 ## Set up
 This project has been developed and tested using [Expo Snack](https://snack.expo.io/). 
 
-As Projects created in Snack are publicly available this project can be reviewed and tested [here](https://snack.expo.io/@beena/flashcards)
+We can import this flascard app from [git hub repository](https://github.com/Beena-Purushothama/FlashCards_React_Native) into expo snack and review and test it @ [Expo Snack](https://snack.expo.io/)
+
 
 You can preview the changes directly on your phone or tablet by clicking the **Run** button or use the simulator by clicking **Tap to Play**.
 
