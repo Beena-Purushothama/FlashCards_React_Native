@@ -21,7 +21,7 @@ class AllDecks extends React.Component{
       <ScrollView >
       {decks && Object.keys(decks).map((key)=>{
           return (
-          <TouchableOpacity
+          <TouchableOpacity key={key}
             onPress={() => this.props.navigation.navigate(
               'DeckDetails',
               { deckKey: key }
