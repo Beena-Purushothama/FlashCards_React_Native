@@ -2,13 +2,13 @@ import { AsyncStorage } from "react-native";
 
 export const DECKS_STORAGE_KEY = "FlashCards:decksstorage";
 
-export async function setDummyData() {
+export function setDummyData() {
   let dummyData = {};
   getDecksFromDB().then(val => {
     if (val && val !== null) {
-      await AsyncStorage.setItem(DECKS_STORAGE_KEY, JSON.parse(val));
+      AsyncStorage.setItem(DECKS_STORAGE_KEY, JSON.parse(val));
     } else {
-      await AsyncStorage.setItem(DECKS_STORAGE_KEY, dummyData);
+      AsyncStorage.setItem(DECKS_STORAGE_KEY, dummyData);
     }
   });
 }
@@ -18,7 +18,7 @@ export async function getDecksFromDB() {
 }
 
 export async function addDeckToDB(deck) {
-  return await  AsyncStorage.mergeItem(
+  return await AsyncStorage.mergeItem(
     DECKS_STORAGE_KEY,
     JSON.stringify({
       [deck.title]: deck
