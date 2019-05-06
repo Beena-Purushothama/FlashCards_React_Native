@@ -24,6 +24,9 @@ class AddCard extends React.Component {
   };
 
   handleAddCard = () => {
+    if (!this.state.question || !this.state.answer) {
+      return alert("Question and answer are both required");
+    }
     const { deckKey, deck, dispatch, navigation } = this.props;
     const noQuestions = deck.questions === undefined || deck.questions === null;
     let newQuestion = noQuestions
