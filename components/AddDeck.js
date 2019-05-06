@@ -15,12 +15,15 @@ class AddDeck extends React.Component {
     const title = this.state.deckTitle;
     let deck = { title: title };
     const { dispatch } = this.props;
+    if (!title) {
+      return alert("Add the Deck Name");
+    }
     addDeckToDB(deck)
       .then(() => {
         dispatch(addDeck(deck));
       })
       .then(() => {
-        this.props.navigation.navigate("Home");
+        this.props.navigation.navigate("DeckDetails", { deckKey: deckKey });
       });
   };
 

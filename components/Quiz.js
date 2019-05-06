@@ -45,7 +45,7 @@ class Quiz extends React.Component {
   };
 
   render() {
-    const { deck, questions, goQuiz, goHome } = this.props;
+    const { deck, questions, goQuiz, goDeckDetails } = this.props;
     const { currentQue, correct, wrong } = this.state;
     let displayQue;
     let buttons;
@@ -66,7 +66,7 @@ class Quiz extends React.Component {
             bgcolor1={purple}
             bgcolor2={purple}
             onPress1={goQuiz}
-            onPress2={goHome}
+            onPress2={goDeckDetails}
           />
         );
       } else {
@@ -158,9 +158,9 @@ const mapDispatchToProps = (dispatch, { navigation }) => {
       clearLocalNotification().then(setLocalNotification);
       return navigation.navigate("Quiz", { deckKey: deckKey });
     },
-    goHome: () => {
+    goDeckDetails: () => {
       clearLocalNotification().then(setLocalNotification);
-      return navigation.navigate("Home");
+      return navigation.navigate("DeckDetails", { deckKey: deckKey });
     }
   };
 };
