@@ -23,7 +23,7 @@ class AddDeck extends React.Component {
         dispatch(addDeck(deck));
       })
       .then(() => {
-        this.props.navigation.navigate("DeckDetails", { deckKey: deckKey });
+        this.props.navigation.navigate("DeckDetails", { deckKey: title });
       });
   };
 
